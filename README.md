@@ -1,48 +1,24 @@
 # PocketExportToMarkdownWithSimpreadAtChrome
 
-这是一个使用Python和Selenium编写的脚本，用于自动化处理一系列网页操作。它可以按顺序打开`todo.txt`文件中的网址，检查网页是否正确加载，然后模拟键盘操作以调用Chrome插件。如果网页的网址有变化，或者打开网页失败，脚本会关闭网页，并将网址存储到`error.txt`文件中。每完成20次操作后，脚本会暂停。
+简单记录下我如何将[pocket导出](https://help.getpocket.com/article/1015-exporting-your-pocket-list)的网页列表,
+批量通过[Simpread简阅](http://ksria.com/simpread/)和[Quicker](https://getquicker.net/)导出为markdown文件的过程.
 
-## 技术栈
+## 使用的工具
 
-- Python
-- Selenium
-- ChromeDriver
+- Simpread插件
+- Quicker
 
-## 如何使用
+## 一些记录
 
-1. 安装Python和Selenium。
-2. 下载并设置ChromeDriver。
-3. 安装并配置好Simpread插件，设置进入阅读模式快捷键为`a a`，保存快捷键为`a t`。
-4. 将想要处理的网址复制到`todo.txt`文件中，每行一个网址。
-5. 运行脚本，脚本会自动打开Chrome，读取`todo.txt`中的网址，选取前20个网址，逐个打开，每个间隔5秒。
-6. 一分钟后，脚本开始对每个网页进行操作。如果网页的网址是原有的网址，脚本会执行键盘操作`a a`，等待五秒，然后执行`a t`，并保留网页为打开状态。如果网页的网址有变化，或者打开网页失败，脚本会关闭网页，并将网址记录到`error.txt`中。
-7. 20个网页执行完毕后，脚本暂停，弹窗显示网页，提示用户查看网页是否正确保存，提示用户使用`ctrl + w`快捷关闭网页。
+因为pocket的离线存档是私有格式, 基于云的不提供导出功能, 所以我只能通过导出网页列表的方式, 将网页导出到本地.
+在初版的时候, 我通过向ChatGPT说明我的需求, 计划是通过python脚本, 读取导出的网页列表, 逐个打开网页, 然后调用Simpread插件, 将网页保存为markdown文件.
+但是我完成后才了解到, Selenium是不支持持久化存储用户设置的(比较麻烦), 所以我改为直接通过Quicker在本地执行...
 
-## 注意事项
+这个是Quicker的动作分享
 
-- 请确保您的网速足够快，以便网页能够在预设的延迟时间内完全加载。
-- 请确保您的Chrome插件可以通过键盘操作调用。
-- 请确保`todo.txt`文件中的网址格式正确。
+[Link](https://getquicker.net)
+通过简单地复制一串网址, Quicker会完成批量调用Simpread插件, 将网页保存为markdown文件的操作.
 
-## 理想的情景
-
-- 打开导出的pocket列表, 手动复制想要处理的文件到本地文件`todo.txt`
-- `todo.txt` 应该是一个纯文本文件，每行一个网址, that's all
-- 安装并配置好Simpread插件, 假设进入阅读模式快捷键为键盘的`a a`, 保存快捷键为`a t`
-- 运行脚本
-    - 这个项目, 会自动打开Chrome, 读取`todo.txt`中的网址, 选取前20个网址
-    - 逐个打开, 每个间隔5秒.
-    - 一分钟后, 到第一个网页, 开始操作
-    - if 网页的网址是原有的网址
-        - 执行键盘操作`a a`
-        - 等待五秒
-        - 执行`a t`
-        - 保留网页为打开状态
-    - elseif 网页的网址有变化, 或者打开网页失败
-        - 关闭网页
-        - 将网址记录到`error.txt`中
-    - 进入下一个网页, 重复上述的if elseif操作
-- 20个网页执行完毕后, 脚本暂停
-- 弹窗显示网页
-- 提示用户: 查看网页是否正确保存
-- 提示用户: 使用`ctrl + w`快捷关闭网页
+- (TODO) 第一次运行需要你指定存储日志的位置.
+- 接收到的网址会存储在`url.txt`中, 保存的markdown文件会存储在简阅设置的相应文件夹中.
+- 如果网址有变化, 比如知乎如果内容被擅长, 会redirect到知乎首页, 那么Quicker会将原网址和实际打开网址都记录到`error.txt`中.
