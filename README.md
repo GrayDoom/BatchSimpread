@@ -1,17 +1,19 @@
 # PocketExportToMarkdownWithSimpreadAtChrome
 
-批量通过[Simpread简阅](http://ksria.com/simpread/)和[Quicker](https://getquicker.net/)导出为markdown文件.
+通过[Simpread简悦](http://ksria.com/simpread/)和[Quicker](https://getquicker.net/),
+
+将一串网页批量地导出为markdown文件.
 
 ## 使用的工具
 
 - Simpread插件
-- Quicker
+- Quicker(Win10/11下的快捷指令软件, 类似iOS的快捷指令)
 
 ## 如何使用
 
-安装配置简阅和Quicker
+安装配置简悦和Quicker
 
-安装这个Quicker的动作分享: [批量简阅导出](https://getquicker.net/Sharedaction?code=f3d75558-8e82-4c0a-d277-08db96d5b7be)
+安装这个Quicker的动作分享: [批量简悦导出](https://getquicker.net/Sharedaction?code=f3d75558-8e82-4c0a-d277-08db96d5b7be)
 
 通过复制一串网址, Quicker会完成批量调用Simpread插件, 将网页保存为markdown文件的操作.
 
@@ -21,11 +23,15 @@
 
 确认后请不要操作鼠标或键盘, 直到Quicker弹出提示框, 展示错误日志.
 
-接收到的网址会存储在`完成的网址.txt`中, 保存的markdown文件会存储在简阅设置的相应文件夹中.
+我默认的简悦快捷键是"A A"进入模式, "A S"保存为markdown文件. 如果你的快捷键不一样, 请修改Quicker的动作.
+
+接收到的网址会存储在`完成的网址.txt`中, 保存的markdown文件会存储在简悦设置的相应文件夹中.
 
 如果网址有变化, 比如知乎如果内容被删改, 则会跳转到知乎首页, 导致实际打开网页和输入的网页不一致.
 
 那么Quicker会不执行操作, 而是将原网址和实际打开网址都记录到`error.txt`中, 然后关闭错误的网页.
+
+`CTRL + W` 可以快速关闭当前网页; 简悦如果没有执行完成, 会在右上角有状态提示.
 
 ## 一些记录
 
